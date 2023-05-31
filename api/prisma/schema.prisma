@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Earnings {
+  id        Int      @id @default(autoincrement())
+  amount    Float
+  date      DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Expenses {
+  id        Int      @id @default(autoincrement())
+  amount    Float
+  date      DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Mileage {
+  id        Int      @id @default(autoincrement())
+  distance  Float
+  date      DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Summay {
+  id                   Int      @id @default(autoincrement())
+  startDate            DateTime
+  endDate              DateTime
+  totalEarnings        Float
+  totalExpenses        Float
+  totalMileage         Float
+  dailyProfit          Float
+  profitPerMile        Float
+  averageEarning       Float
+  averageExpenses      Float
+  averageDailyProfit   Float
+  averageProfitPerMile Float
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}

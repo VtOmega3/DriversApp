@@ -1,0 +1,12 @@
+version: '3'
+services:
+  driversdb:
+    image: postgres
+    environment:
+      - POSTGRES_USER=drivers
+      - POSTGRES_PASSWORD=drivers
+      - POSTGRES_DB=drivers
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./data:/var/lib/postgresql/data
