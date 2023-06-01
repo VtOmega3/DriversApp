@@ -22,7 +22,7 @@ const CalculateProfitPerMile = (earnings, expenses, mileage) => {
   if (totalMileage === 0) {
     return 0;
   }
-  
+
   return (totalEarning - totalExpenses) / totalMileage;
 };
 
@@ -36,11 +36,30 @@ const calculateAverage = (total, count) => {
 
 const getWeeklySummaryService = async (startDate, endDate) => {
   try {
+    const getNearestMonday = (date) => {
+      const day = date.getDay();
+      const diff = (day + 6) % 7; // Calcula a diferença em dias para chegar à segunda-feira
+      date.setDate(date.getDate() - diff);
+      date.setHours(0, 0, 0, 0);
+      return date;
+    };
+    
+    const getNearestSunday = (date) => {
+      const day = date.getDay();
+      const diff = (7 - day) % 7; // Calcula a diferença em dias para chegar ao domingo
+      date.setDate(date.getDate() + diff);
+      date.setHours(23, 59, 59, 999);
+      return date;
+    };
+
+    const monday = getNearestMonday(startDate);
+    const sunday = getNearestSunday(endDate);
+
     const earnings = await prisma.earnings.findMany({
       where: {
         date: {
-          gte: new Date(startDate),
-          lte: new Date(endDate),
+          gte: monday,
+          lte: sunday,
         },
       },
     });
@@ -48,8 +67,8 @@ const getWeeklySummaryService = async (startDate, endDate) => {
     const expenses = await prisma.expenses.findMany({
       where: {
         date: {
-          gte: new Date(startDate),
-          lte: new Date(endDate),
+          gte: monday,
+          lte: sunday,
         },
       },
     });
@@ -57,8 +76,8 @@ const getWeeklySummaryService = async (startDate, endDate) => {
     const mileage = await prisma.expenses.findMany({
       where: {
         date: {
-          gte: new Date(startDate),
-          lte: new Date(endDate),
+          gte: monday,
+          lte: sunday,
         },
       },
     });
