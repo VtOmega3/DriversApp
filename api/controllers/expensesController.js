@@ -47,4 +47,5 @@ const deleteExpensesById = async (req, res) => {
 module.exports = {
   createExpenses,
   getExpensesByDate,
+  deleteExpensesById,
 };

@@ -34,7 +34,7 @@ model Mileage {
   updatedAt DateTime @updatedAt
 }
 
-model Summay {
+model Summary {
   id                   Int      @id @default(autoincrement())
   startDate            DateTime
   endDate              DateTime

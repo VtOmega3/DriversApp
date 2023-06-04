@@ -4,5 +4,6 @@ const mileageController = require('../controllers/mileageController')
 
 router.post('/', mileageController.createMileage);
 router.get('/:date', mileageController.getMileageByDate);
+router.delete('/:id', mileageController.deleteMileageById);
 
 module.exports = router;

@@ -12,7 +12,6 @@ const createEarnings = async (req, res) => {
 
     res.json(earnings)
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: 'Failed to create earnings' });
   }
 };

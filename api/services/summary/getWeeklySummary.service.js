@@ -6,7 +6,7 @@ const {
   calculateDailyProfit,
   calculateProfitPerMile,
   calculateAverage,
-} = require('../summaryCalculations');
+} = require('./summaryCalculations');
 
 const getWeeklySummaryService = async (startDate, endDate) => {
   try {

@@ -6,7 +6,7 @@ const {
   calculateDailyProfit,
   calculateProfitPerMile,
   calculateAverage,
-} = require('../summaryCalculations');
+} = require('./summaryCalculations');
 
 const getMonthlySummaryService = async (month, year) => {
   try {
@@ -31,7 +31,7 @@ const getMonthlySummaryService = async (month, year) => {
       },
     });
 
-    const mileage = await prisma.expenses.findMany({
+    const mileage = await prisma.mileage.findMany({
       where: {
         date: {
           gte: startDate,
