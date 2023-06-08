@@ -29,7 +29,7 @@ const calculateAverage = (total, count) => {
     return 0
   }
 
-  return total / amount;
+  return total / count;
 };
 
 module.exports = {

@@ -41,7 +41,7 @@ const getMonthlySummaryService = async (month, year) => {
     });
 
     const totalEarnings = calculateTotalAmount(earnings);
-    const totalExpenses = calculateAverage(expenses);
+    const totalExpenses = calculateTotalAmount(expenses);
     const totalMileage = calculateTotalMileage(mileage);
     const dailyProfit = calculateDailyProfit(earnings, expenses);
     const profitPerMile = calculateProfitPerMile(earnings, expenses, mileage);
@@ -49,7 +49,7 @@ const getMonthlySummaryService = async (month, year) => {
     const averageEarning = calculateAverage(totalEarnings, earnings.length);
     const averageExpenses = calculateAverage(totalExpenses, expenses.length);
     const averageDailyProfit = calculateAverage(dailyProfit, earnings.length);
-    const averageProfitPerMile = calculateAverage(profitPerMile, earnings.length);
+    const averageMileagePerDay = calculateAverage(totalMileage, mileage.length);
 
     return {
       totalEarnings,
@@ -60,9 +60,10 @@ const getMonthlySummaryService = async (month, year) => {
       averageEarning,
       averageExpenses,
       averageDailyProfit,
-      averageProfitPerMile,
+      averageMileagePerDay,
     };
   } catch (error) {
+    console.log(error)
     throw new Error('Failed to retrieve monthly summary');
   }
 };
